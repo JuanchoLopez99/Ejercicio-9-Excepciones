@@ -9,6 +9,9 @@ package excepciones.ejercicio.pkg9;
  *
  * @author sergi
  */
-public class RangoException {
-    
+public class RangoException extends Exception{
+
+    public RangoException(String mensaje) {
+        super(mensaje);
+    }
 }
