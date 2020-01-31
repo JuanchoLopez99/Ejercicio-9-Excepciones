@@ -115,29 +115,25 @@ public class ExcepcionesEjercicio9 {
     }
 
     /**
-     * @param args the command line arguments
+     * 
+     * @param args 
      */
     public static void main(String[] args) {
         ArrayList<Double> notas = new ArrayList<>();
         Alumno alu1 = new Alumno();
-        alu1.setNombre("Sergio");
-        
-        for (int i = 0; i < 5; i++) {
-            boolean parar = false;
-            while (parar == false) {
-                try {
-                    double nota = leerDouble("Dime la nota: ");
-                    if (nota < 0 || nota > 10) {
-                        throw new RangoException("Nota introducida no válida");
-                    }
-                    parar = true;
-                    notas.add(nota);
-                } catch (RangoException error) {
-                    System.out.println(error.getMessage());
-                }
-            }
-        }
-        alu1.setNotas(notas);
-    }
+        alu1.setNombre(leerString("Dime el nombre del alumno"));
 
+        try {
+            alu1.pedirNotas();
+        } catch (RangoException error) {
+            System.out.println(error.getMessage());
+        }
+        
+        ArrayList<Double> nnota = alu1.getNotas();
+        nnota.set(leerEntero("Dime que nota quieres cambiar: "), leerDouble("Dime la nueva nota: "));
+        alu1.setNotas(nnota);
+        
+        alu1.imprimirCalificaciones();
+        
+    }
 }
