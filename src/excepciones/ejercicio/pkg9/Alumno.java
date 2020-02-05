@@ -16,7 +16,7 @@ import java.util.InputMismatchException;
  */
 public class Alumno {
 
-    public static int num_asignturas = 5;
+    public static int num_asignaturas = 5;
     private String nombre;
     private ArrayList<Double> notas;
 
@@ -32,11 +32,10 @@ public class Alumno {
      * Constructor por parametros
      *
      * @param nombre nombre del alumo
-     * @param notas array de las notas del alumno
      */
-    public Alumno(String nombre, ArrayList<Double> notas) {
+    public Alumno(String nombre) {
         this.nombre = nombre;
-        this.notas = notas;
+        this.notas = new ArrayList();
     }
 
     /**
@@ -45,7 +44,7 @@ public class Alumno {
      * @return devuelve el numero de asignaturas, 5
      */
     public static int getNum_asignturas() {
-        return num_asignturas;
+        return num_asignaturas;
     }
 
     public String getNombre() {
@@ -89,7 +88,7 @@ public class Alumno {
      * @throws RangoException
      */
     public void pedirNotas() throws RangoException {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < num_asignaturas; i++) {
             double nota = leerDouble("Dime la nota: ");
             if (nota < 0 || nota > 10) {
                 throw new RangoException("Nota introducida no válida");
@@ -99,6 +98,8 @@ public class Alumno {
     }
 
     public void modificarNota(int posicion, double nnota) throws RangoException, IndexOutOfBoundsException {
+        if (posicion <0 || posicion >= num_asignaturas)
+            throw new RangoException("Posición no válida");
         notas.set((posicion - 1), nnota);
     }
 

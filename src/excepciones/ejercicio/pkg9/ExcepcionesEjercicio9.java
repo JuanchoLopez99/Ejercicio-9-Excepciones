@@ -115,25 +115,23 @@ public class ExcepcionesEjercicio9 {
     }
 
     /**
-     * 
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
-        ArrayList<Double> notas = new ArrayList<>();
-        Alumno alu1 = new Alumno();
-        alu1.setNombre(leerString("Dime el nombre del alumno"));
+        Alumno alu1 = new Alumno(leerString("Dime el nombre del alumno: "));
 
         try {
             alu1.pedirNotas();
+            alu1.imprimirCalificaciones();
+            try {
+                alu1.modificarNota(leerEntero("Dime la nota que quieres cambiar: "), leerEntero("Dime la nueva nota: "));
+                alu1.imprimirCalificaciones();
+            } catch (RangoException error) {
+                System.out.println("Error.Posicion no valida");
+            }
         } catch (RangoException error) {
             System.out.println(error.getMessage());
         }
-        
-        ArrayList<Double> nnota = alu1.getNotas();
-        nnota.set(leerEntero("Dime que nota quieres cambiar: "), leerDouble("Dime la nueva nota: "));
-        alu1.setNotas(nnota);
-        
-        alu1.imprimirCalificaciones();
-        
     }
 }
